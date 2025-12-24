@@ -1,52 +1,60 @@
-import { BrutalistBlock, BrutalistCard } from "@/components/ui/brutalist-card";
+import { Phone, MessageCircle, BookOpen, TrendingUp } from "lucide-react";
 
 const steps = [
   {
     number: "01",
-    title: "CALL",
+    title: "Call",
     description: "Dial our toll-free number from any phone. No smartphone or internet required.",
-    icon: "📞",
+    icon: Phone,
   },
   {
     number: "02",
-    title: "SPEAK",
+    title: "Speak",
     description: "Answer questions using your voice. BAKAME understands Kinyarwanda, English, and French.",
-    icon: "🗣️",
+    icon: MessageCircle,
   },
   {
     number: "03",
-    title: "LEARN",
+    title: "Learn",
     description: "Receive instant feedback and adaptive lessons tailored to your level.",
-    icon: "📖",
+    icon: BookOpen,
   },
   {
     number: "04",
-    title: "GROW",
+    title: "Grow",
     description: "Earn points, unlock achievements, and track your progress over time.",
-    icon: "🌱",
+    icon: TrendingUp,
   },
 ];
 
 export function HowItWorks() {
   return (
-    <section className="py-16 md:py-24">
+    <section className="py-20 md:py-28 bg-muted/50">
       <div className="container mx-auto px-4">
-        <BrutalistBlock className="mb-12 md:mb-16 inline-block">
-          <h2 className="text-3xl md:text-5xl font-bold">HOW IT WORKS</h2>
-        </BrutalistBlock>
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">How It Works</h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Learning made accessible for everyone, anywhere, with just a phone call
+          </p>
+        </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-0">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {steps.map((step, index) => (
-            <BrutalistCard
-              key={step.number}
-              variant={index % 2 === 0 ? "default" : "inverted"}
-              className="border-t-0 first:border-t-2 md:border-t-2 md:border-l-0 md:first:border-l-2"
-            >
-              <div className="text-6xl mb-4">{step.icon}</div>
-              <div className="text-sm font-bold opacity-50 mb-2">{step.number}</div>
-              <h3 className="text-2xl font-bold mb-3">{step.title}</h3>
-              <p className="opacity-80">{step.description}</p>
-            </BrutalistCard>
+            <div key={step.number} className="relative">
+              <div className="bg-card border border-border rounded-2xl p-6 h-full shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
+                    <step.icon className="h-6 w-6 text-primary" />
+                  </div>
+                  <span className="text-4xl font-bold text-primary/20">{step.number}</span>
+                </div>
+                <h3 className="text-xl font-semibold text-foreground mb-2">{step.title}</h3>
+                <p className="text-muted-foreground">{step.description}</p>
+              </div>
+              {index < steps.length - 1 && (
+                <div className="hidden lg:block absolute top-1/2 -right-4 w-8 h-0.5 bg-border" />
+              )}
+            </div>
           ))}
         </div>
       </div>
